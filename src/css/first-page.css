@@ -1,0 +1,79 @@
+
+
+.main-content {
+  margin-top: 60px; 
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - 60px);
+}
+
+.main-content.sidebar-open {
+  margin-left: 280px; 
+}
+
+
+.container-header {
+    margin: 120px 100px;
+}
+
+.text {
+  font-family: "IBM Plex Sans Thai", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.25px;
+  vertical-align: middle;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.section-divider {
+  height: 1px;
+  background-color: #676767;
+  margin: 25px 0;
+  border: none;
+}
+
+.row1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.header-2 {
+  margin-top: 80px;
+  margin-bottom: 150px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .container-header {
+    margin: 60px 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 0;
+  }
+
+  .main-content.sidebar-open {
+    margin-left: 0; /* บนมือถือไม่ดันเนื้อหา */
+  }
+
+  .container-header {
+    margin: 40px 20px;
+  }
+
+  .row1 {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .header-2 {
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
+}
