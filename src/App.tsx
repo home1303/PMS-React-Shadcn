@@ -8,11 +8,9 @@ const App: React.FC = () => {
         <Navbar />
       </header>
 
-      <main className="flex-1 mt-[12px]">
-          <AllRouter />
+      <main className="flex-1 mt-[24px]">
+        <AllRouter />
       </main>
-
-      
     </div>
   );
 };

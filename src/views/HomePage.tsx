@@ -53,9 +53,9 @@ const Homepage: React.FC = () => {
       </div>
 
       {/* Input */}
-      <div className="flex items-center mb-4 ml-33 space-x-2">
+      <div className="flex items-center mb-4 ml-25 space-x-2">
         <label className="w-36 text-right">หัวข้อ:</label>
-        <Input className="w-60" type="text" />
+        <Input className="w-150" type="text" />
 
         <div className="flex justify-between items-center w-full ml-4 space-x-2">
           <Button>ค้นหา</Button>

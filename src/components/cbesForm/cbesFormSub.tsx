@@ -99,7 +99,7 @@ const CREsFormSub: React.FC<CREsFormSubProps> = ({
               <Button
                 type="button"
                 size="sm"
-                variant="destructive"
+                // variant="destructive"
                 onClick={() => deleteRow(index)}
               >
                 ลบ

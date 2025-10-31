@@ -25,8 +25,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertCircleIcon } from "lucide-react";
 
 const CBEsFormPage: React.FC = () => {
+  const [showError, setShowError] = useState(false);
   const [formValue, setFormValue] = useState<CBEsRes & { note?: string }>({
     thainame: "",
     name: "",
@@ -53,7 +56,7 @@ const CBEsFormPage: React.FC = () => {
         note: data.notes?.[0]?.text || "",
         processes: data.processes || [],
       });
-      setTableData(data.processes || []); 
+      setTableData(data.processes || []);
     }
   }, [mode, data]);
 
@@ -93,9 +96,11 @@ const CBEsFormPage: React.FC = () => {
     };
 
     if (!payload.name || payload.name.trim() === "") {
-      alert("กรุณากรอกชื่อก่อนบันทึก");
+      setShowError(true);
       return;
     }
+
+    setShowError(false);
 
     const stored = localStorage.getItem("cbesPayloads");
     let payloads: CBEsRes[] = stored ? JSON.parse(stored) : [];
@@ -119,6 +124,27 @@ const CBEsFormPage: React.FC = () => {
         {/* Header */}
         <div className="flex pb-6 pt-12 pl-18">
           <p className="text-lg font-normal">จัดการหลักเกณฑ์ CBEs</p>
+        </div>
+
+        <div className="flex pb-6 pl-18">
+          {showError && (
+            <Alert className="relative" variant="destructive">
+              <AlertCircleIcon />
+              <AlertTitle>แจ้งเตือน Error.</AlertTitle>
+              <AlertDescription>
+                <p>บางอย่างผิดพลาด</p>
+                <ul className="list-inside list-disc text-sm">
+                  <li>กรุณาใส่ชื่อหัวข้อภาษาไทย</li>
+                </ul>
+              </AlertDescription>
+              <button
+                onClick={() => setShowError(false)}
+                className="absolute top-2 right-2 text-sm font-bold"
+              >
+                ×
+              </button>
+            </Alert>
+          )}
         </div>
 
         {/* Inputs */}
@@ -161,7 +187,7 @@ const CBEsFormPage: React.FC = () => {
                 setFormValue({ ...formValue, roundedit: Number(val) })
               }
             >
-              <SelectTrigger className="w-32 !text-white">
+              <SelectTrigger className="w-32">
                 <SelectValue placeholder="รอบ" />
               </SelectTrigger>
               <SelectContent>
@@ -227,8 +253,11 @@ const CBEsFormPage: React.FC = () => {
         </div>
 
         <div className="flex justify-end mt-6 space-x-2">
-          <Button type="submit">บันทึกและไปหน้ากำหนด Maturity</Button>
-          <Button type="submit" variant="default">
+          <Button type="submit">
+            บันทึกและไปหน้ากำหนด Maturity
+          </Button>
+
+          <Button type="submit">
             Level บันทึก
           </Button>
         </div>
